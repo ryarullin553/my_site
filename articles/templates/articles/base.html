@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <ul>
+        {% for el in lst %}
+        <li style="list-style: none">{{ el }}</li>
+        {% endfor %}
+    </ul>
+
+    {% block content %}
+        <h1>Я заголовок</h1>
+    {% endblock %}
+</body>
+</html>
