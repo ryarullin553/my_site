@@ -1,10 +1,9 @@
-from django.http import HttpResponse
 from django.shortcuts import render
+from models import *
 
 
 def test(request):
-    return HttpResponse("Test")
+    lst = ['_____'.join(['(^_^)' for _ in range(5)]) for _ in range(5)]
+    temps = {'title': 'Страница сайта', 'lst': lst}
+    return render(request, 'articles/index.html', temps)
 
-
-def categories(request, catid):
-    return HttpResponse(catid)
