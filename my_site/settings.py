@@ -53,7 +53,7 @@ ROOT_URLCONF = 'my_site.urls'
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.jinja2.Jinja2'
+        'BACKEND': 'django.template.backends.django.DjangoTemplates'
         ,
         'DIRS': [BASE_DIR / 'templates']
         ,
