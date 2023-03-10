@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from models import *
+from .models import *
 
 
-def test(request):
-    lst = ['_____'.join(['(^_^)' for _ in range(5)]) for _ in range(5)]
-    temps = {'title': 'Страница сайта', 'lst': lst}
+def create_articles(request):
+    posts = Article.objects.all()
+    digits = range(150)
+    temps = {'title': 'Статьи', 'posts': posts, 'digits': digits}
     return render(request, 'articles/index.html', temps)
 
