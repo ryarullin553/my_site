@@ -1,9 +1,27 @@
 {% extends 'articles/base.html' %}
 
 {% block content %}
-    <ul>
-        {% for p in digits %}
-            <li>{{ p }}</li>
-        {% endfor %}
-    </ul>
+    <main class="main-articles">
+        <div class="sidebar">
+            <ul class="categories">
+                {% for category in categories %}
+                    <li><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
+                {% endfor %}
+            </ul>
+            <button class="add-article" type="button">Добавить статью</button>
+        </div>
+        <ul class="articles">
+            {% for article in articles %}
+                <li>
+                    <a href="{{ article.get_absolute_url }}">
+                        <p class="article-category">{{ article.category }}</p>
+                        <p class="article-author">Руслан Яруллин</p>
+                        <p class="article-time-create">{{ article.time_create|date:"d.m.Y"}}</p>
+                        <h1>{{ article.title }}</h1>
+                        <p class="article-content">{{ article.content }}</p>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </main>
 {% endblock %}

@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Aldrich&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'articles/images/favicon.svg' %}">
     <title>{{ title }}</title>
 </head>
 <body>
@@ -35,18 +36,16 @@
               <li><a href="#">Главная</a></li>
               <li><a href="#">Проекты</a></li>
               <li><a href="#">Навыки</a></li>
-              <li><a href="#">Статьи</a></li>
-              <li><a href="#">Admin</a></li>
+              <li><a href="{% url 'articles' %}">Статьи</a></li>
+              <li><a href="/admin">Admin</a></li>
           </ul>
           <a href="#" class="loupe"><img src="{% static 'articles/images/loupe.svg' %}" alt="Loupe"></a>
           <a href="#" class="profile"><img src="{% static 'articles/images/profile.svg' %}" alt="Profile"></a>
           <button class="login" type="button">Войти</button>
       </nav>
   </header>
-  <main>
-      {% block content %}
-      {% endblock %}
-  </main>
+  {% block content %}
+  {% endblock %}
   <footer>
       <div class="footer-container">
           <div class="copyrights">

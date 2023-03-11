@@ -1,3 +1,5 @@
+/* Стили для базовой страницы HTML*/
+
 body {
     background: linear-gradient(134.41deg, rgba(3, 9, 29, 0.95) 13.47%, #132059 56.64%, #03091D 90.93%) fixed;
     font-family: 'Inter', sans-serif;
@@ -164,3 +166,73 @@ footer {
 .footer-container .nav-list {
     margin: 0;
 }
+
+/* Стили для базовой страницы HTML*/
+
+/* Стили для страницы со статьями */
+
+.main-articles {
+    display: flex;
+    gap: 62px;
+}
+
+.articles {
+    width: 841px;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+    padding: 0;
+    margin: 0;
+}
+
+.articles li {
+    background: #FFFFFF;
+    height: 222px;
+    border-radius: 15px;
+}
+
+.articles a {
+    color: #000000;
+}
+
+.articles h1 {
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 24px;
+    margin: 54px 0 0 41px;
+}
+
+.articles p {
+    margin: 15px 0 0 41px;
+}
+
+.sidebar {
+    width: 240px;
+}
+
+.categories {
+    margin: 0;
+    list-style-type: none;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 46px;
+    padding: 40px 0 40px 50px;
+    font-size: 24px;
+    margin-bottom: 34px;
+}
+
+.add-article {
+    width: 240px;
+    height: 52px;
+    color: #FFFFFF;
+    border-radius: 20px;
+    font-size: 20px;
+    background: linear-gradient(91.24deg, #FFFFFF -151.39%, #CF088C 39.72%, #CF088C 60.99%, #CF088C 80.28%, #FFFFFF 231.81%);
+    border: none;
+    padding: 0;
+}
+
+
