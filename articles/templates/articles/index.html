@@ -1,4 +1,5 @@
 {% extends 'articles/base.html' %}
+{% load static %}
 
 {% block content %}
     <main class="main-articles">
@@ -12,14 +13,26 @@
         </div>
         <ul class="articles">
             {% for article in articles %}
-                <li>
-                    <a href="{{ article.get_absolute_url }}">
-                        <p class="article-category">{{ article.category }}</p>
-                        <p class="article-author">Руслан Яруллин</p>
-                        <p class="article-time-create">{{ article.time_create|date:"d.m.Y"}}</p>
-                        <h1>{{ article.title }}</h1>
-                        <p class="article-content">{{ article.content }}</p>
+                <li class="article">
+                    <div class="article-info">
+                        <a href="{{ article.category.get_absolute_url }}" class="article-category">{{ article.category }}</a>
+                        <a href='#' class="article-author">Руслан Яруллин</a>
+                        <p class="article-time-create">{{ article.time_create|date:"d.m.Y" }}</p>
+                    </div>
+                    <a href="{{ article.get_absolute_url }}" class="article-content">
+                        <div class="article-content-text">
+                            <h1>{{ article.title }}</h1>
+                            <p>{{ article.content }}</p>
+                        </div>
+                        {% if article.image %}
+                            <img class="article-img" src="{{ article.image.url }}" alt="Article-img">
+                        {% endif %}
                     </a>
+                    <div class="article-buttons">
+                        <a href="#"><img class="article-like-mini" src="{% static 'articles/images/article-like-mini.svg' %}" alt="Like-icon"></a>
+                        <a href="#"><img class="article-comment-mini" src="{% static 'articles/images/article-comment-mini.svg' %}" alt="Comment-icon"></a>
+                        <a href="#"><img class="article-bookmark-mini" src="{% static 'articles/images/article-bookmark-mini.svg' %}" alt="Bookmark-icon"></a>
+                    </div>
                 </li>
             {% endfor %}
         </ul>
