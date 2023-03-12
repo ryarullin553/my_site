@@ -1,14 +1,12 @@
 {% extends 'articles/base.html' %}
 {% load static %}
+{% load articles_tags %}
+
 
 {% block content %}
     <main class="main-articles">
         <div class="sidebar">
-            <ul class="categories">
-                {% for category in categories %}
-                    <li><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
-                {% endfor %}
-            </ul>
+            {% show_categories %}
             <button class="add-article" type="button">Добавить статью</button>
         </div>
         <ul class="articles">
