@@ -5,4 +5,4 @@ from django.shortcuts import render
 def main_page(request):
     temps = {'title': 'Главная',
             }
-    return render(request, 'articles/base.html', temps)
+    return render(request, '../templates/base.html', temps)
