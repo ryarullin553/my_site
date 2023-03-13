@@ -6,10 +6,7 @@
     <link type="text/css" href="{% static 'articles/css/styles.css' %}" rel="stylesheet">
 {% endblock %}
 {% block content %}
-    <div class="sidebar">
-        {% show_categories %}
-        <button class="add-article" type="button">Добавить статью</button>
-    </div>
+    {% show_categories %}
     <ul class="articles">
         {% for article in articles %}
             <li class="article">
@@ -21,7 +18,7 @@
                 <a href="{{ article.get_absolute_url }}" class="article-content">
                     <div class="article-content-text">
                         <h1>{{ article.title }}</h1>
-                        <p>{{ article.content }}</p>
+                        <p>{{ article.annotation }}</p>
                     </div>
                     {% if article.image %}
                         <img class="article-img" src="{{ article.image.url }}" alt="Article-img">
