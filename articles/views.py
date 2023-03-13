@@ -1,6 +1,8 @@
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+
 from .models import *
+from .forms import *
 
 
 def articles(request):
@@ -25,3 +27,18 @@ def open_category(request, category_slug):
              'articles': articles_list,
              }
     return render(request, 'articles/index.html', temps)
+
+
+def add_article(request):
+    if request.method == 'POST':
+        form = AddArticleForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()  # Создается новый экземпляр Article с данными из формы
+            return redirect('articles_page')  # Возвращает на страницу со статьями
+    else:
+        form = AddArticleForm()
+
+    temps = {'title': 'Добавить статью',
+             'form': form,
+             }
+    return render(request, 'articles/add.html', temps)

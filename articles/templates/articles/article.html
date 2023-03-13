@@ -1,13 +1,7 @@
-{% extends '..\templates\base.html' %}
+{% extends 'articles/index.html' %}
 {% load static %}
-{% load articles_tags %}
-
-{% block add_style %}
-    <link type="text/css" href="{% static 'articles/css/styles.css' %}" rel="stylesheet">
-{% endblock %}
 
 {% block content %}
-    {% show_categories %}
     <div class="article-container">
         <div class="article-info">
             <a href="{{ article.category.get_absolute_url }}" class="article-category">{{ article.category }}</a>

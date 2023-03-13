@@ -38,6 +38,10 @@
     margin: 0 0 7px 41px;
 }
 
+.article-content-text {
+    width: 578px;
+}
+
 .article-content-text h1 {
     font-weight: 600;
     font-size: 28px;
@@ -86,14 +90,14 @@
 }
 
 .add-article {
+    display: inline-block;
+    text-align: center;
     width: 240px;
-    height: 52px;
     color: #FFFFFF;
     border-radius: 20px;
     font-size: 20px;
     background: linear-gradient(91.24deg, #FFFFFF -151.39%, #CF088C 39.72%, #CF088C 60.99%, #CF088C 80.28%, #FFFFFF 231.81%);
-    border: none;
-    padding: 0;
+    padding: 14px 0;
 }
 
 .article-container {
@@ -105,4 +109,7 @@
     float: left;
 }
 
+.add-article-form {
+    float: left;
+}
 
