@@ -33,10 +33,10 @@
               <p>RUSLAN</p>
           </a>
           <ul class="nav-list">
-              <li><a href="#">Главная</a></li>
+              <li><a href="{% url 'main_page' %}">Главная</a></li>
               <li><a href="#">Проекты</a></li>
               <li><a href="#">Навыки</a></li>
-              <li><a href="{% url 'articles' %}">Статьи</a></li>
+              <li><a href="{% url 'articles_page' %}">Статьи</a></li>
               <li><a href="/admin">Admin</a></li>
           </ul>
           <a href="#" class="loupe"><img src="{% static 'articles/images/loupe.svg' %}" alt="Loupe"></a>
@@ -44,8 +44,10 @@
           <button class="login" type="button">Войти</button>
       </nav>
   </header>
-  {% block content %}
-  {% endblock %}
+  <main>
+      {% block content %}
+      {% endblock %}
+  </main>
   <footer>
       <div class="footer-container">
           <div class="copyrights">
@@ -70,10 +72,10 @@
               </a>
           </div>
           <ul class="nav-list">
-              <li><a href="#">Главная</a></li>
+              <li><a href="{% url 'main_page' %}">Главная</a></li>
               <li><a href="#">Проекты</a></li>
               <li><a href="#">Навыки</a></li>
-              <li><a href="#">Статьи</a></li>
+              <li><a href="{% url 'articles_page' %}">Статьи</a></li>
               <li><a href="#">Admin</a></li>
           </ul>
       </div>
