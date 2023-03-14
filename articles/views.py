@@ -1,44 +1,54 @@
-from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
-
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView
 from .models import *
 from .forms import *
 
 
-def articles(request):
-    articles_list = Article.objects.all()
-    temps = {'title': 'Статьи',
-             'articles': articles_list,
-             }
-    return render(request, 'articles/index.html', temps)
+class ArticlesList(ListView):
+    model = Article
+    template_name = 'articles/index.html'  # Явно указываем собственный шаблон
+    context_object_name = 'articles'  # Указываем контекст для обращения к экземплярам в шаблоне
+    extra_context = {'title': 'Статьи'}  # Передает только статический контекст: строки и цифры
+
+    def get_queryset(self):
+        return Article.objects.filter(is_published=True)
 
 
-def open_article(request, article_slug):
-    article = get_object_or_404(Article, slug=article_slug)
-    temps = {'article': article,
-             'title': article.title,
-             }
-    return render(request, 'articles/article.html', temps)
+class CategoryArticlesList(ListView):
+    model = Article
+    template_name = 'articles/index.html'
+    context_object_name = 'articles'
+    allow_empty = False                    # Ошибка 404 при несуществующей категории
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = f"Статьи {Category.objects.get(slug=self.kwargs['category_slug'])}"
+        return context
+
+    def get_queryset(self):
+        return Article.objects.filter(category__slug=self.kwargs['category_slug'], is_published=True)
 
 
-def open_category(request, category_slug):
-    articles_list = Article.objects.filter(category__slug=category_slug)
-    temps = {'title': f'Статьи {Category.objects.get(slug=category_slug)}',
-             'articles': articles_list,
-             }
-    return render(request, 'articles/index.html', temps)
+class ArticleShow(DetailView):
+    model = Article
+    template_name = 'articles/article.html'
+    slug_url_kwarg = 'article_slug'
+    context_object_name = 'article'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = context['article']
+        return context
 
 
-def add_article(request):
-    if request.method == 'POST':
-        form = AddArticleForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()  # Создается новый экземпляр Article с данными из формы
-            return redirect('articles_page')  # Возвращает на страницу со статьями
-    else:
-        form = AddArticleForm()
+class AddArticle(CreateView):
+    form_class = AddArticleForm
+    template_name = 'articles/add.html'
+    success_url = reverse_lazy('articles_page')
 
-    temps = {'title': 'Добавить статью',
-             'form': form,
-             }
-    return render(request, 'articles/add.html', temps)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Добавить статью'
+        return context
+

@@ -2,8 +2,8 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
-    path('', articles, name='articles_page'),
-    path('article/<slug:article_slug>/', open_article, name='article'),
-    path('category/<slug:category_slug>/', open_category, name='category'),
-    path('add/', add_article, name='add_article')
+    path('', ArticlesList.as_view(), name='articles_page'),
+    path('category/<slug:category_slug>/', CategoryArticlesList.as_view(), name='category'),
+    path('article/<slug:article_slug>/', ArticleShow.as_view(), name='article'),
+    path('add/', AddArticle.as_view(), name='add_article')
 ]
